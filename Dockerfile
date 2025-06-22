@@ -16,16 +16,19 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy all files before build
+# ✅ Copy all Laravel files
 COPY . .
 
-# Install PHP dependencies
+# ✅ Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Vite Build (Make sure it runs inside Docker)
+# ✅ Build frontend assets
 RUN npm install && npm run build
 
-# Set permissions
+# ✅ Clear Laravel caches
+RUN php artisan optimize:clear
+
+# ✅ Set permissions
 RUN chmod -R 775 storage bootstrap/cache && chown -R www-data:www-data .
 
 # Force Laravel to use file sessions
