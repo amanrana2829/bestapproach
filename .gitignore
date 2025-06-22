@@ -1,27 +1,43 @@
+# Logs & OS-specific files
 *.log
 .DS_Store
+Thumbs.db
+
+# Environment files
 .env
 .env.backup
 .env.production
+
+# PHP tools & caches
 .phpactor.json
 .phpunit.result.cache
+/.phpunit.cache
+
+# IDE/editor folders
 /.fleet
 /.idea
-/.nova
-/.phpunit.cache
 /.vscode
+/.nova
 /.zed
-/auth.json
-/node_modules
 
+# Authentication config
+/auth.json
+
+# Node & vendor dependencies
+/node_modules
+/vendor
+
+# Laravel specific
 /public/hot
 /public/storage
-
-!/public/build/**
-
 /storage/*.key
 /storage/pail
-/vendor
+
+# Homestead
 Homestead.json
 Homestead.yaml
-Thumbs.db
+
+# ✅ Allow built Vite assets
+!/public/build/
+!/public/build/**
+
