@@ -16,22 +16,22 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy project files
+# Copy all files before build
 COPY . .
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Install and build frontend (React/Vite)
+# Vite Build (Make sure it runs inside Docker)
 RUN npm install && npm run build
 
-# Set Laravel permissions
+# Set permissions
 RUN chmod -R 775 storage bootstrap/cache && chown -R www-data:www-data .
 
-# ✅ Force Laravel to use file sessions (in case .env is not overriding)
+# Force Laravel to use file sessions
 ENV SESSION_DRIVER=file
 
-# Expose port 80
+# Expose port
 EXPOSE 80
 
 # Start Apache
