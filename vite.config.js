@@ -8,5 +8,9 @@ export default defineConfig({
       refresh: true,
     }),
   ],
+  build: {
+    outDir: 'public/build', // ✅ Ensure Vite outputs to public/build
+    emptyOutDir: true,
+  },
   base: '/build/',
 });
