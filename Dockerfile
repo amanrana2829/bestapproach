@@ -25,8 +25,7 @@ RUN composer install --no-dev --optimize-autoloader
 # ✅ Install Node dependencies & build assets
 RUN npm install && npm run build
 
-# ✅ Clear Laravel caches
-RUN php artisan optimize:clear
+
 
 # ✅ Set permissions
 RUN chmod -R 775 storage bootstrap/cache && chown -R www-data:www-data .
