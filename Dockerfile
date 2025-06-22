@@ -16,13 +16,13 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
-# ✅ Copy all Laravel files
+# ✅ Copy Laravel project files
 COPY . .
 
 # ✅ Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# ✅ Build frontend assets
+# ✅ Install Node dependencies & build assets
 RUN npm install && npm run build
 
 # ✅ Clear Laravel caches
